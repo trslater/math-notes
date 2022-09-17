@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+
+\begin{document}
+    $n,r \in \mathbb{W}$.
+    
+    Permutations: \begin{equation}
+        P(n, r) = (n)_r = \frac{n!}{(n - r)!}, r \leq n
+    \end{equation}
+
+    Combinations: \begin{equation}
+        C(n, r) = {n \choose r} = \frac{P(n, r)}{r!} = \frac{n!}{r!(n - r)!}
+    \end{equation}
+
+    Permutations w/ replacement (repeats in output): \begin{equation}
+        P_R(n, r) = n^r, P_R(0, 0) = 1
+    \end{equation}
+
+    Combinations w/ replacement (repeats in output): \begin{equation}
+        C_R(n, r) = C(n + r - 1, r)
+    \end{equation}
+
+    Permutations of multisets (repeats in input): \begin{equation}
+        P_M(n, x, y, z) = {n \choose x, y, z} = \frac{n!}{x!y!z!}
+    \end{equation}
+
+    Circular permutations: \begin{equation}
+        P_C(n) = (n - 1)!
+    \end{equation}
+
+    $$P(n, 0) = 1$$
+
+    $$P(n, 1) = n$$
+
+    $$P(n, n) = n!$$
+    
+    $$P(n, n - 1) = P(n, n)$$
+    
+    $$C(n, n - r) = C(n, r)$$
+
+    $k$ consecutive items: \begin{equation}
+        P(n - k + 1, r)
+    \end{equation}
+
+    Count $n$ minus $k$ consecutive items, plus 1 representing the items as a group.
+
+    $k$ items can't be together: \begin{equation}
+        P(n - k, r) \cdot P(n - k + 1, k)
+    \end{equation}
+
+    Count all $n - k$ items without restriction. Then place $k$ items in $n - k$ spaces after of each item, and 1 space before first item. Then the items
+
+    \begin{table}[h]
+        \caption{Combinatorial Operations}
+        \centering
+        \begin{tabular}{cl}
+            \toprule
+            Operation & Meaning \\
+            \midrule
+            $+ n$ & Add $n$ choices to an event \\
+            $- n$ & Remove $n$ choices from an event \\
+            $\times n$ & Add an event with $n$ choices \\
+            $\div n$ & Remove an event with $n$ choices \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+\end{document}
