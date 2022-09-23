@@ -1,0 +1,102 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+
+\title{Linear Algebra}
+\author{Tristan Slater}
+
+\begin{document}
+    \maketitle
+
+    \section{Standard Matrix Representation}
+
+    \begin{equation}
+        A = \begin{bmatrix}
+            a_{11} & a_{12} & a_{13} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & a_{23} & \cdots & a_{2n} \\
+            a_{31} & a_{32} & a_{33} & \cdots & a_{3n} \\
+            \cdots & \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & a_{m3} & \cdots & a_{mn} \\
+        \end{bmatrix}
+    \end{equation}
+
+    \section{Identity Matrix}
+
+    \begin{equation}
+        I_n = \begin{bmatrix}
+            1 & 0 & 0 & \cdots & 0 \\
+            0 & 1 & 0 & \cdots & 0 \\
+            0 & 0 & 1 & \cdots & 0 \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & 0 & \cdots & 1
+        \end{bmatrix}
+    \end{equation}
+
+    $I_n$ is $n \times n$.
+
+    \section{Selection Matrix}
+
+    \begin{equation}
+        S_{ik} = \begin{bmatrix}
+            0 & \cdots & 1 & \cdots & 0
+        \end{bmatrix}
+    \end{equation}
+
+    \begin{equation}
+        S_{ik} A = \begin{bmatrix}
+            a_{i1} & a_{i2} & a_{i3} & \cdots & a_{in} \\
+            \vdots & \vdots & \vdots & \ddots & \vdots \\
+            a_{k1} & a_{k2} & a_{k3} & \cdots & a_{kn} \\
+        \end{bmatrix}
+    \end{equation}
+
+    \begin{equation}
+        A S_{jl}^T = \begin{bmatrix}
+            a_{1j} & \cdots & a_{1l} \\
+            a_{2j} & \cdots & a_{2l} \\
+            a_{3j} & \cdots & a_{3l} \\
+            \vdots & \ddots & \vdots \\
+            a_{mj} & \cdots & a_{ml}
+        \end{bmatrix}
+    \end{equation}
+
+    \section{Minor Matrix}
+
+    The elements of the minor matrix $M$ are given by: \begin{equation}
+        M_{ij} = \begin{vmatrix}
+            a_{11} & \cdots & a_{1(j - 1)} & a_{1(j + 1)} & \cdots & a_{1n} \\
+            \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            a_{(i - 1)1} & \cdots & a_{(i - 1)(j - 1)} & a_{(i - 1)(j + 1)} & \cdots & a_{(i - 1)n} \\
+            a_{(i + 1)1} & \cdots & a_{(i + 1)(j - 1)} & a_{(i + 1)(j + 1)} & \cdots & a_{(i + 1)n} \\
+            \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & \cdots & a_{1(j - 1)} & a_{1(j + 1)} & \cdots & a_{mn} \\
+        \end{vmatrix}
+    \end{equation}
+
+    \section{Co-Factor Matrix}
+
+    The elements of the co-factor matrix $C$ are given by: \begin{equation}
+        C_{ij} = (-1)^{i + j} M_{ij}
+    \end{equation}
+
+    $(-1)^{i + j}$ has the effect of alternating negative sign both vertically and horizontally, e.g.: $$C = \begin{bmatrix}
+        a & -b & c \\
+        -d & e & -f \\
+        g & -h & i \\
+    \end{bmatrix}$$
+
+    \section{Adjugate Matrix}
+
+    \begin{equation}
+        \text{adj}{\,A} = C^\text{T}
+    \end{equation}
+
+    \section{Determinant}
+
+    Recursive definition for any $n \times n$ matrix: \begin{equation}
+        \det{A} = \begin{cases}
+            \sum_{k = 1}^n{a_{1k}C_{1k}} & n > 0 \\
+            1 & n = 0 \\
+        \end{cases}
+    \end{equation}
+\end{document}
