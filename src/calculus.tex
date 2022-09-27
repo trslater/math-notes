@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{array}
 
 \title{Calculus}
 \author{Tristan Slater}
@@ -28,4 +29,20 @@
     \begin{align}
         \int{f(t)\ dt} = \int_{F^{-1}(0)}^x{f(t)\ dt}
     \end{align}
+    
+    \section{Partial Fraction Decomposition}
+
+    For a rational expression: $$\frac{p(x)}{q(x)} = \frac{\sum_{i = 0}^m{a_ix^i}}{\sum_{j = 0}^n{b_jx^j}}$$
+
+    \begin{table}[h]
+        \caption{Partial Fraction Term Lookup}
+        $$\def\arraystretch{3}
+        \begin{array}{>$l<$>{\displaystyle}c|>{\displaystyle}c}
+            & \text{Factor of }q & \text{Partial Fraction Terms} \\
+            \hline
+            & x + a & \frac{A}{x + a} \\
+            Multiplicity & (x + a)^n & \sum_{k = 1}^n{\frac{A_k}{(x + a)^k}} \\
+            Irreducible & x^n + ax + b & \sum_{k = 0}^{n - 1}{\frac{A_kx^k}{x^n + ax + b}}
+        \end{array}$$
+    \end{table}
 \end{document}
