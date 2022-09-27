@@ -6,11 +6,14 @@
 \usepackage{xcolor}
 \usepackage{cancel}
 \usepackage{array}
+\usepackage[hidelinks]{hyperref}
 
 \title{Combinatorics}
 
 \begin{document}
     \maketitle
+
+    \tableofcontents
 
     \section{Basis}
 
@@ -86,19 +89,7 @@
         P_C(n) = (n - 1)!
     \end{equation}
 
-    \section{Identities}
-
-    $$P(n, 0) = 1$$
-
-    $$P(n, 1) = n$$
-
-    $$P(n, n) = n!$$
-    
-    $$P(n, n - 1) = P(n, n)$$
-    
-    $${n \choose n - r} = {n \choose r}$$
-
-    \section{Repeats}
+    \subsection{Repeats}
 
     $k$ consecutive items: \begin{equation}
         P(n - k + 1, r)
@@ -127,7 +118,7 @@
         \end{tabular}
     \end{table}
 
-    \section{Integer Solutions to Linear Expressions}
+    \subsection{Integer Solutions to Linear Expressions}
 
     $$x_1 + x_2 + x_3 + \cdots + x_n = r$$
     
