@@ -43,7 +43,7 @@
 
     These are standard \textbf{combinations}.
     
-    \section{Alternate Basis}
+    \section{Alternative Basis}
 
     Another way to think about combinations and permutations is to start with combinations: \begin{equation}
         C(n, r) = {n \choose r} = \frac{n!}{r!(n - r)!}
@@ -79,23 +79,23 @@
         {n \choose r} = {n - 1 \choose r} + {n - 1 \choose r - 1}
     \end{equation}
 
-    \section{Notes}
+    \section{Common Problems}
 
-    Permutations of multisets (repeats in input): \begin{equation}
-        P_M(n, x, y, z) = {n \choose x, y, z} = \frac{n!}{x!y!z!}
-    \end{equation}
+    \subsection{Circular Permutations}
 
     Circular permutations: \begin{equation}
         P_C(n) = (n - 1)!
     \end{equation}
 
-    \subsection{Repeats}
+    \subsection{Consecutive Items}
 
     $k$ consecutive items: \begin{equation}
         P(n - k + 1, r)
     \end{equation}
 
     Count $n$ minus $k$ consecutive items, plus 1 representing the items as a group.
+
+    \subsection{Separated Items}
 
     $k$ items can't be together: \begin{equation}
         P(n - k, r) \cdot P(n - k + 1, k)
@@ -131,4 +131,14 @@
     $$x_1 + x_2 + x_3 + \cdots + x_n < r$$
     
     $${n + r - 1 \choose r - 1}$$
+
+    \subsection{Lattice Paths}
+
+    \begin{equation}
+        {\Delta x + \Delta y \choose \Delta x} = {\Delta x + \Delta y \choose \Delta y}
+    \end{equation}
+
+    With $n$ stops: \begin{equation}
+        {(x_2 - x_1) + (y_2 - y_1) \choose (x_2 - x_1)} \cdots {(x_n - x_{n - 1}) + (y_n - y_{n - 1}) \choose (x_n - x_{n - 1})}
+    \end{equation}
 \end{document}
