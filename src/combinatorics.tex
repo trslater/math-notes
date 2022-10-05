@@ -42,6 +42,21 @@
     \end{equation}
 
     These are standard \textbf{combinations}.
+
+    \subsection{From Multisets}
+
+    For some multiset $A$ where $n = |A|$ and $m$ is the number of groups: $$\def\arraystretch{3}
+    \begin{array}{>{\displaystyle}cc>{\displaystyle}c}
+        A & m & f \\
+        \hline
+        \{n_1 \cdot a_1, ..., n_r \cdot a_r, 1 \cdot a_{r + 1}, ..., 1 \cdot a_m\} & r + n - \sum{n_i} & {n \choose n_1, ..., n_r} \\
+        \{r \cdot a, (n - r) \cdot \varepsilon\} & 2 & {n \choose r} \\
+        \{r \cdot a, (n - 1) \cdot \varepsilon\} & r & \left(\!\!{n \choose r}\!\!\right) \\
+        \{1 \cdot a_1, ..., 1 \cdot a_r, (n - r) \cdot \varepsilon\} & r + 1 & P(n, r) \\
+        \{\infty \cdot a_1, ..., \infty \cdot a_r\} & r & n^r \\
+    \end{array}$$
+
+    $\varepsilon$ represents characters we don't choose.
     
     \section{Alternative Basis}
 
@@ -79,6 +94,26 @@
         {n \choose r} = {n - 1 \choose r} + {n - 1 \choose r - 1}
     \end{equation}
 
+    \begin{equation}
+        P(n, r) = P(n, k)P(n - k, r - k), \quad k \leq r
+    \end{equation}
+
+    \section{General Strategies}
+
+    \subsection{Select \& Scramble}
+
+    The main idea is that permutations are just a combination with its items scrambled (i.e., a permutation of all elements), so a normal permutation problem could be modified as follows: $$
+        P(n, r) \to {n \choose r}r!
+    $$
+
+    For a basic example like this, it doesn't make much sense, but you can do more advanced things with it. For example, let's say you want to select a board that consists of 5 employees and 3 members of the public, and there are 7 specific roles to fill. 20 people volunteered from the public and there are 30 employees. This kind of problem doesn't lend itself to permutations, but does have specific role assignment. But with select and scramble: $$
+        C(30, 5)C(20, 3)7!
+    $$
+
+    \subsection{Complement}
+
+    If there are problems that say something like ``at least 1'', it is easier to think of all arrangements minus the arrangements where there are none. ``At least 1'' can be rephrased as ``some'' which is equivalent to ``not none.''
+
     \section{Common Problems}
 
     \subsection{Circular Permutations}
@@ -103,42 +138,51 @@
 
     Count all $n - k$ items without restriction. Then place $k$ items in $n - k$ spaces after of each item, and 1 space before first item. Then the items
 
-    \begin{table}[h]
-        \caption{Combinatorial Operations}
-        \centering
-        \begin{tabular}{cl}
-            \toprule
-            Operation & Meaning \\
-            \midrule
-            $+ n$ & Add $n$ choices to an event \\
-            $- n$ & Remove $n$ choices from an event \\
-            $\times n$ & Add an event with $n$ choices \\
-            $\div n$ & Remove an event with $n$ choices \\
-            \bottomrule
-        \end{tabular}
-    \end{table}
-
     \subsection{Integer Solutions to Linear Expressions}
 
-    $$x_1 + x_2 + x_3 + \cdots + x_n = r$$
+    When all $x_i \geq 0$: \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n = r \implies {n + r - 1 \choose r}
+    \end{equation}
     
-    $${n + r - 1 \choose r}$$
-
-    $$x_1 + x_2 + x_3 + \cdots + x_n \leq r$$
+    \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n \color{red}\leq\color{black} r \implies {n + r - 1 \color{red}+ 1\color{black} \choose r}
+    \end{equation}
     
-    $${n + r \choose r}$$
+    \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n \color{red}<\color{black} r \implies {n + r - 1 \choose r \color{red}- 1\color{black}}
+    \end{equation}
 
-    $$x_1 + x_2 + x_3 + \cdots + x_n < r$$
-    
-    $${n + r - 1 \choose r - 1}$$
+    For $x_1 \geq a_1, x_2 \geq a_2, ..., x_n \geq a_3$: \begin{equation}
+        z_1 + z_1 + \cdots + z_n = r - a \implies {n + (r - a) - 1 \choose (r - a)}
+    \end{equation}
 
+    \begin{align*}
+        z_1 &= x_1 - a_1 \\
+        z_2 &= x_2 - a_2 \\
+        &\vdots \\
+        z_n &= x_n - a_n \\
+    \end{align*}
+
+    $$a = \sum_{i=1}^n{a_i}$$
+
+    All these modifications can stack.
+        
     \subsection{Lattice Paths}
 
     \begin{equation}
         {\Delta x + \Delta y \choose \Delta x} = {\Delta x + \Delta y \choose \Delta y}
     \end{equation}
 
-    With $n$ stops: \begin{equation}
-        {(x_2 - x_1) + (y_2 - y_1) \choose (x_2 - x_1)} \cdots {(x_n - x_{n - 1}) + (y_n - y_{n - 1}) \choose (x_n - x_{n - 1})}
+    With $n$ stops: \begin{align*}
+        \Delta x_{1,2} & = x_2 - x_1, & \Delta y_{1,2} &= y_2 - y_1 \\
+        \Delta x_{2,3} & = x_3 - x_2, & \Delta y_{2,3} &= y_3 - y_2 \\
+        & \vdots & & \vdots \\
+        \Delta x_{n - 1,n} & = x_n - x_{n - 1}, & \Delta y_{n - 1,n} &= y_n - y_{n - 1} \\
+    \end{align*}
+    
+    \begin{equation}
+        {\Delta x_{1,2} + \Delta y_{1,2} \choose \Delta x_{1,2}} {\Delta x_{2,3} + \Delta y_{2,3} \choose \Delta x_{2,3}} \cdots {\Delta x_{n - 1,n} + \Delta y_{n - 1,n} \choose \Delta x_{n - 1,n}} 
     \end{equation}
+
+    Note: there are $n - 1$ factors, since they represent the trips \textit{between} points.
 \end{document}
