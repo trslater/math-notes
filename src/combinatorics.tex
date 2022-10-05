@@ -22,26 +22,20 @@
     \end{equation}
 
     Then we think about discounting orderings that are the same: \begin{equation}
-        \frac{n!}{n_1! n_2! \cdots n_m!} = {n \choose n_1, n_2, ..., n_m}, \quad \text{where } \sum_{k = 1}^m{n_k} = n
+        \frac{n!}{k_1! k_2! \cdots k_m!} = {n \choose k_1, k_2, ..., k_m}, \quad \text{where } \sum_{i = 1}^m{k_i} = n
     \end{equation}
 
-    This is referred to as \textbf{permutations of multisets}. These represent items in the set that are considered the same.
-
-    From this, we can derive all other types of combinations and permutations.
+    This is referred to as \textbf{permutations of multisets} and is related to the \textbf{multinomial theorem}. These represent items in the set that are considered the same. From this, we can derive all other types of combinations and permutations.
 
     For standard \textbf{permutations}: \begin{equation}
         P(n, r) = {n \choose \underbrace{1, 1, ..., 1}_{r \text{ times}}, n - r}
     \end{equation}
 
-    In fact, since the sum of the $n_k$'s must be $n$, there are always a number of implicit 1's to add up to $n$, e.g.: \begin{equation}
-        {n \choose n_1, ..., n_m} = {n \choose n_1, ..., n_m, \underbrace{1, ..., 1}_{n - k \text{ times}}}, \quad \text{where } k = \sum_{i = 1}^m{n_k} < n
-    \end{equation}
-
-    The one exception is when there is only one term on the bottom, then there is an implicit $n - r$ term as well: \begin{equation}
+    For standard \textbf{combinations}: \begin{equation}
         {n \choose r} = {n \choose r, n - r}
     \end{equation}
 
-    These are standard \textbf{combinations}.
+    Note: if the sum of the $k_i$'s is not equal to $n$, then there is always an implicit group the size of $n$ minus the sum of the $k_i$'s.
 
     \subsection{From Multisets}
 
@@ -185,4 +179,10 @@
     \end{equation}
 
     Note: there are $n - 1$ factors, since they represent the trips \textit{between} points.
+    
+    \section{Inclusion–Exclusion Principle}
+
+    \begin{equation}
+        |A \cup B| = |A| + |B| - |A \cap B|
+    \end{equation}
 \end{document}
