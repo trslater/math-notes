@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{array}
+\usepackage[hidelinks]{hyperref}
+
+\title{Combinatorics Problems}
+
+\begin{document}
+    \maketitle
+
+    \tableofcontents
+
+    \section{Circular Permutations}
+
+    Circular permutations: \begin{equation}
+        P_C(n) = (n - 1)!
+    \end{equation}
+
+    \section{Consecutive Items}
+
+    $k$ consecutive items: \begin{equation}
+        P(n - k + 1, r)
+    \end{equation}
+
+    Count $n$ minus $k$ consecutive items, plus 1 representing the items as a group.
+
+    \section{Separated Items}
+
+    $k$ items can't be together: \begin{equation}
+        P(n - k, r) \cdot P(n - k + 1, k)
+    \end{equation}
+
+    Count all $n - k$ items without restriction. Then place $k$ items in $n - k$ spaces after of each item, and 1 space before first item. Then the items
+
+    \section{Integer Solutions to Linear Expressions}
+
+    When all $x_i \geq 0$: \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n = r \implies {n + r - 1 \choose r}
+    \end{equation}
+    
+    \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n \color{red}\leq\color{black} r \implies {n + r - 1 \color{red}+ 1\color{black} \choose r}
+    \end{equation}
+    
+    \begin{equation}
+        x_1 + x_2 + x_3 + \cdots + x_n \color{red}<\color{black} r \implies {n + r - 1 \choose r \color{red}- 1\color{black}}
+    \end{equation}
+
+    For $x_1 \geq a_1, x_2 \geq a_2, ..., x_n \geq a_3$: \begin{equation}
+        z_1 + z_1 + \cdots + z_n = r - a \implies {n + (r - a) - 1 \choose (r - a)}
+    \end{equation}
+
+    \begin{align*}
+        z_1 &= x_1 - a_1 \\
+        z_2 &= x_2 - a_2 \\
+        &\vdots \\
+        z_n &= x_n - a_n \\
+    \end{align*}
+
+    $$a = \sum_{i=1}^n{a_i}$$
+
+    All these modifications can stack.
+
+    For $x_1 \leq a_1, x_2 \leq a_2, ..., x_n \leq a_3$:
+        
+    \section{Lattice Paths}
+
+    \begin{equation}
+        {\Delta x + \Delta y \choose \Delta x} = {\Delta x + \Delta y \choose \Delta y}
+    \end{equation}
+
+    With $n$ stops: \begin{align*}
+        \Delta x_{1,2} & = x_2 - x_1, & \Delta y_{1,2} &= y_2 - y_1 \\
+        \Delta x_{2,3} & = x_3 - x_2, & \Delta y_{2,3} &= y_3 - y_2 \\
+        & \vdots & & \vdots \\
+        \Delta x_{n - 1,n} & = x_n - x_{n - 1}, & \Delta y_{n - 1,n} &= y_n - y_{n - 1} \\
+    \end{align*}
+    
+    \begin{equation}
+        {\Delta x_{1,2} + \Delta y_{1,2} \choose \Delta x_{1,2}} {\Delta x_{2,3} + \Delta y_{2,3} \choose \Delta x_{2,3}} \cdots {\Delta x_{n - 1,n} + \Delta y_{n - 1,n} \choose \Delta x_{n - 1,n}} 
+    \end{equation}
+
+    Note: there are $n - 1$ factors, since they represent the trips \textit{between} points.
+
+    \section{Finding Binomial Coefficients}
+
+    What is the coefficient of $x^ay^b$ in $(x + y)^n$?
+    
+    Start with binomial theorem: \begin{equation}
+        (x + y)^n = \sum_{k = 0}^n{{n \choose k}x^ky^{n - k}}
+    \end{equation}
+
+    We want the coefficient when $k = a$ and $n - k = b$, so: $${n \choose a}$$
+
+    \subsection{A Complicated Example}
+
+    What is the coefficient of $x^{17}y^6$ in $(x^4y - 3xy^2)^5$?
+
+    The binomial theorem is: \begin{align*}
+        (x^4y - 3xy^2)^5 & = \sum_{k = 0}^5{{5 \choose k}(x^4y)^k(-3xy^2)^{5 - k}} \\
+        & = \sum_{k = 0}^5{{5 \choose k}x^{4k}y^k(-3)^{5 - k}x^{5 - k}y^{10 - 2k}} \\
+        & = \sum_{k = 0}^5{{5 \choose k}(-3)^{5 - k}x^{4k}x^{5 - k}y^ky^{10 - 2k}} \\
+        & = \sum_{k = 0}^5{{5 \choose k}(-3)^{5 - k}x^{3k + 5}y^{-k + 10}} \\
+    \end{align*}
+
+    So, we want the coefficient when $3k + 5 = 17$, i.e., when $k = 4$: \begin{equation}
+        {5 \choose 4}(-3)^{5 - 4} = -15
+    \end{equation}
+
+    \section{Finding Multinomial Coefficients}
+
+    What is the coefficient of $x^ay^bz^c$ in $(x + y + z)^n$?
+    
+    $${n \choose a, b, c}$$
+
+    \subsection{A Complicated Example}
+
+    What is the coefficient of $x^3y^6z^4$ in $(2x + y - z^2)^{11}$?
+
+    \begin{align*}
+        (2x + y - z^2)^{11} & = \sum{{11 \choose k_1, k_2, k_3}(2x)^{k_1}y^{k_2}(-x^2)^{k_3}} \\
+        & = \sum{{11 \choose k_1, k_2, k_3}2^{k_1}(-1)^{k_3}x^{k_1}y^{k_2}z^{2k_3}} \\
+    \end{align*}
+
+    We want $k_1 = 3$, $k_2 = 6$, and $2k_3 = 4 \implies k_3 = 2$: $${11 \choose 3, 6, 2}2^3(-1)^2$$
+
+    \section{Strings not Including Substring}
+
+    How many words with 10 distinct letters don't contain ``CAT'', ``ATE'', or ``MOUSE''?
+    
+    Let $c_1$ be ``must contain `CAT''', $c_2$ be condition ``must contain `ATE''', and $c_3$ be condition ``must contain `MOUSE'''. $$\begin{aligned}
+        \bar{N} & = N - N(c_1) - N(c_2) - N(c_3) \\
+        & + N(c_1c_2) + N(c_1c_3) + N(c_2c_3) \\
+        & - N(c_1c_2c_3) \\
+        & = {26 \choose 10}10!, & \text{Any 10 letter wod} \\
+        & - 2{23 \choose 7}8!, & \text{Arrange 7 + group for ``CAT''/``ATE''} \\
+        & - {21 \choose 5}6!, & \text{Same for ``MOUSE''} \\
+        & + {22 \choose 6}7!, & \text{Same for ``CATE''} \\
+        & + {18 \choose 2}4!, & \text{2 groups for ``CAT'' and ``MOUSE''} \\
+        & + 0, & \text{Can't have ``ATE'' and ``MOUSE''} \\
+        & - 0, & \text{Same}
+    \end{aligned}$$
+\end{document}
